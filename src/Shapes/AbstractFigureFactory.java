@@ -1,9 +1,6 @@
 package Shapes;
 
 import java.io.InputStream;
-import Shapes.StreamFigureFactory;
-import Shapes.RandomFigureFactory;
-
 
 public class AbstractFigureFactory {
     public static FigureFactory getFactory(String inputType){
@@ -19,5 +16,4 @@ public class AbstractFigureFactory {
         }
         throw new IllegalArgumentException("Unknown type: " + inputType);
     }
-
 }

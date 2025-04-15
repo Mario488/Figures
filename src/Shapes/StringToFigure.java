@@ -1,8 +1,5 @@
 package Shapes;
-
-
 import java.lang.reflect.*;
-
 
 public class StringToFigure {
     private static Figure createFigureFromArgs(String type, double ...nums) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {

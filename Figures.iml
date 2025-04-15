@@ -10,5 +10,15 @@
     <orderEntry type="library" name="junit.jupiter" level="project" />
     <orderEntry type="library" name="reflections" level="project" />
     <orderEntry type="library" name="slf4j.simple" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/Downloads/jar files" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$USER_HOME$/Downloads/jar files" recursive="false" />
+      </library>
+    </orderEntry>
   </component>
 </module>

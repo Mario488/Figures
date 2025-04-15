@@ -3,9 +3,6 @@ package Shapes;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 
-import Shapes.StringToFigure;
-import Shapes.FigureFactory;
-
 public class StreamFigureFactory implements FigureFactory{
 
     private final BufferedReader reader;
