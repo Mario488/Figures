@@ -1,12 +1,16 @@
 package Shapes;
 
+import java.util.Locale;
+
 public class Rectangle implements Figure{
     private double width, height;
 
-    public Rectangle(double w, double h){
-        setSides(w, h);
+    public Rectangle(double[] args) {
+        setSides(args);
     }
-    private void setSides(double w, double h){
+    private void setSides(double[] args){
+        double w = args[0];
+        double h = args[1];
         if(w <= 0 || h <= 0){
             throw new IllegalArgumentException("Width and height must be greater than 0");
         }
@@ -16,7 +20,7 @@ public class Rectangle implements Figure{
 
     @Override
     public String toString(){
-        return String.format("rectangle %.2f %.2f", width, height);
+        return String.format(Locale.US, "rectangle %.2f %.2f", width, height);
     }
 
     @Override

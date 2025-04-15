@@ -5,10 +5,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.*;
 
 import Shapes.*;
+import java.lang.reflect.*;
+
 
 public class RandomFigureFactoryTest {
     @Test
-    public void testCreateRandomFigure(){
+    public void testCreateRandomFigure() throws ClassNotFoundException {
         final int N = 1000;
         FigureFactory fac = new RandomFigureFactory();
         Map<String, Integer> figCounts = setFigureCounts();
@@ -39,16 +41,21 @@ public class RandomFigureFactoryTest {
         }
     }
 
-    private void updateFigureCount(Figure tempFig, Map<String, Integer> figCounts){
-        if(tempFig instanceof Triangle){
-            figCounts.put("triangle", figCounts.get("triangle") + 1);
+    private void updateFigureCount(Figure tempFig, Map<String, Integer> figCounts) throws ClassNotFoundException {
+        String[] types = RandomFigureFactory.types;
+        String figClassType;
+        for(String type: types){
+            figClassType = "Shapes." + capitilise(type);
+            Class<?> cl = Class.forName(figClassType);
+            if(cl.isInstance(tempFig)){
+                figCounts.put(type, figCounts.get(type) + 1);
+            }
         }
-        else if(tempFig instanceof Rectangle){
-            figCounts.put("rectangle", figCounts.get("rectangle") + 1);
-        }
-        else if(tempFig instanceof Circle){
-            figCounts.put("circle", figCounts.get("circle") + 1);
-        }
+
+    }
+
+    private static String capitilise(String input){
+        return input.substring(0, 1).toUpperCase() + input.substring(1).toLowerCase();
     }
 
     private void checkFigureDistribution(Map<String, Integer> figCounts, int N){

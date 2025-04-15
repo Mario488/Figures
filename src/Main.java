@@ -2,9 +2,11 @@
 //org.junit.jupiter:junit-jupiter:5.10.0
 import Shapes.*;
 
+import java.awt.image.AffineTransformOp;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -108,16 +110,13 @@ public class Main {
             default -> System.out.println("Invalid input type");
         }
 
-//• To list them you use the "to-string" operation and then present the output to the user.
-//• To clone them you use the "clone" method.
-//• Deleting a figure in C++ will require you to consider a few details, such as adding virtual destructors. Using smart pointers will also help a lot (see the next step)
-//• Storing the figures in a file should also rely on the "to-string" operation.
+
         System.out.println("List of available commands:\n" +
                 "list - displays all figures\nclone - clones a figure\n" +
                 "delete - deletes a figure");
         String command;
         int figureNumber;
-        while((command = sc.nextLine()).equalsIgnoreCase("exit")){
+        while(!(command = sc.nextLine()).equalsIgnoreCase("exit")){
             switch(command){
                 case "list":
                     for(int i = 0; i < figures.size(); i++){

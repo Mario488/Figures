@@ -1,12 +1,17 @@
 package Shapes;
 
+import java.util.Locale;
+
 public class Triangle implements Figure{
     private double sideA, sideB, sideC;
 
-    public Triangle(double A, double B, double C) throws InvalidTriangleException {
-        setSides(A, B, C);
+    public Triangle(double[] args) throws InvalidTriangleException {
+        setSides(args);
     }
-    private void setSides(double A, double B, double C) throws InvalidTriangleException {
+    private void setSides(double[] args) throws InvalidTriangleException {
+        double A = args[0];
+        double B = args[1];
+        double C = args[2];
         if(A <= 0 || B <= 0 || C <= 0){
             throw new IllegalArgumentException("Sides must be greater than 0");
         }
@@ -23,7 +28,7 @@ public class Triangle implements Figure{
 
     @Override
     public String toString(){
-        return String.format("triangle %.2f %.2f %.2f", sideA, sideB, sideC);
+        return String.format(Locale.US, "triangle %.2f %.2f %.2f", sideA, sideB, sideC);
     }
 
     @Override

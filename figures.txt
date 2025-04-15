@@ -1,10 +1,10 @@
-triangle 4.00 5.00 6.00
-circle 3.14
-rectangle 4.50 5.40
-rectangle 255.64 197.30
-triangle 492.27 231.28 721.85
-circle 158.49
-circle 499.79
-rectangle 761.79 465.34
-triangle 6.00 6.00 6.00
-circle 3.14
+triangle 4,00 5,00 6,00
+circle 3,14
+rectangle 4,50 5,40
+rectangle 255,64 197,30
+triangle 492,27 231,28 721,85
+circle 158,49
+circle 499,79
+rectangle 761,79 465,34
+triangle 6,00 6,00 6,00
+circle 3,14

@@ -1,6 +1,8 @@
 package Shapes;
 
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
+
 import Shapes.StringToFigure;
 import Shapes.FigureFactory;
 
@@ -22,6 +24,10 @@ public class StreamFigureFactory implements FigureFactory{
         }
         catch(IOException | InvalidStringToFigureException | InvalidTriangleException | IllegalArgumentException  e){
             System.out.println(e.getMessage());
+        } catch (ClassNotFoundException | IllegalAccessException | InvocationTargetException | NoSuchMethodException |
+                 InstantiationException e) {
+            System.out.println("Couldn't create figure: ");
+
         }
         return null;
     }

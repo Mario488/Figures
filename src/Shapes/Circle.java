@@ -1,13 +1,16 @@
 package Shapes;
 
+import java.util.Locale;
+
 public class Circle implements Figure{
     private double radius;
 
-    public Circle(double r){
-        setRadius(r);
+    public Circle(double[] arg){
+        setArg(arg);
     }
 
-    private void setRadius(double r){
+    private void setArg(double[] arg){
+        double r = arg[0];
         if(r <= 0){
             throw new IllegalArgumentException("Radius must be greater than 0");
         }
@@ -25,7 +28,7 @@ public class Circle implements Figure{
 
     @Override
     public String toString(){
-        return String.format("circle %.2f", radius);
+        return String.format(Locale.US, "circle %.2f", radius);
     }
 
     @Override

@@ -1,30 +1,23 @@
 package Shapes;
 
-public class StringToFigure {
 
-    private static Figure createFigureFromArgs(String type, double ...nums) throws InvalidTriangleException, InvalidStringToFigureException {
-        switch(type){
-            case "triangle":
-                if(nums.length == 3){
-                    return new Triangle(nums[0], nums[1], nums[2]);
-                }
-                throw new InvalidStringToFigureException("Triangle requires 3 sides");
-            case "rectangle":
-                if(nums.length == 2){
-                    return new Rectangle(nums[0], nums[1]);
-                }
-                throw new InvalidStringToFigureException("Rectangle requires 2 sides");
-            case "circle":
-                if(nums.length == 1){
-                    return new Circle(nums[0]);
-                }
-                throw new InvalidStringToFigureException("Circle requires radius");
-            default:
-                throw new InvalidStringToFigureException("Invalid figure type");
-        }
+import java.lang.reflect.*;
+
+
+public class StringToFigure {
+    private static Figure createFigureFromArgs(String type, double ...nums) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        type = "Shapes." + capitilise(type);
+        Class<?> cl = Class.forName(type);
+        Constructor<?> ctor = cl.getConstructor(double[].class);
+        Object[] args = new Object[]{nums};
+        Object obj = ctor.newInstance(args);
+        return (Figure) obj;
     }
 
-    public static Figure createFrom(String strFig) throws InvalidStringToFigureException, InvalidTriangleException {
+    public static Figure createFrom(String strFig) throws InvalidStringToFigureException, InvalidTriangleException,
+                                                          ClassNotFoundException, InvocationTargetException,
+                                                          NoSuchMethodException, InstantiationException, IllegalAccessException
+    {
         if (strFig == null || strFig.isBlank()) throw new InvalidStringToFigureException("Input can't be blank or null");
         String[] tokens = strFig.trim().split(" ");
         String type = tokens[0].toLowerCase();
@@ -40,5 +33,9 @@ public class StringToFigure {
             }
         }
         return createFigureFromArgs(type, nums);
+    }
+
+    private static String capitilise(String input){
+        return input.substring(0, 1).toUpperCase() + input.substring(1).toLowerCase();
     }
 }
