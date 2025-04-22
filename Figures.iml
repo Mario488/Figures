@@ -7,7 +7,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="junit.jupiter" level="project" />
     <orderEntry type="library" name="reflections" level="project" />
     <orderEntry type="library" name="slf4j.simple" level="project" />
     <orderEntry type="module-library">
@@ -20,5 +19,18 @@
         <jarDirectory url="file://$USER_HOME$/Downloads/jar files" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://D:/Downloads/slf4j-simple" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://D:/Downloads/slf4j-simple/slf4j-simple/src" />
+        </SOURCES>
+        <jarDirectory url="file://D:/Downloads/slf4j-simple" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="junit.jupiter" level="project" />
   </component>
 </module>

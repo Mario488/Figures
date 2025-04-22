@@ -1,4 +1,6 @@
 package Shapes;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Random;
 import java.util.Set;
 import org.reflections.Reflections;
@@ -12,13 +14,14 @@ public class RandomFigureFactory implements FigureFactory{
     @Override
     public Figure create() {
         String type = types[rand.nextInt(types.length)];
-
-        return switch (type) {
-            case "triangle" -> createTriangle();
-            case "rectangle" -> createRectangle();
-            case "circle" -> createCircle();
-            default -> throw new IllegalStateException("Unexpected value: " + type);
-        };
+        String methodType = "create" + StringUtils.capitalize(type);
+        try{
+            Method rndMethod = this.getClass().getDeclaredMethod(methodType);
+            return (Figure) rndMethod.invoke(this);
+        }
+        catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static String[] getFigureTypes(){

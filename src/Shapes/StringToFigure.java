@@ -3,7 +3,7 @@ import java.lang.reflect.*;
 
 public class StringToFigure {
     private static Figure createFigureFromArgs(String type, double ...nums) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        type = "Shapes." + capitilise(type);
+        type = "Shapes." + StringUtils.capitalize(type);
         Class<?> cl = Class.forName(type);
         Constructor<?> ctor = cl.getConstructor(double[].class);
         Object[] args = new Object[]{nums};
@@ -30,9 +30,5 @@ public class StringToFigure {
             }
         }
         return createFigureFromArgs(type, nums);
-    }
-
-    private static String capitilise(String input){
-        return input.substring(0, 1).toUpperCase() + input.substring(1).toLowerCase();
     }
 }
