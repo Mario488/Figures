@@ -6,6 +6,7 @@ import java.util.*;
 public class Main {
     private static final List<Figure> figures = new ArrayList<>();
     private static final String figuresDbFilePath = "./figures.txt";
+    // lists all saved figures
     private static void listFigures(){
         for(int i = 0; i < figures.size(); i++){
             Figure currFig = figures.get(i);
@@ -13,6 +14,7 @@ public class Main {
         }
     }
     private static int readFigureCount(Scanner sc){
+        // reads input until the user enters a number
         while(true){
             try{
                 int N = sc.nextInt();
@@ -30,6 +32,7 @@ public class Main {
         int figureNumber = sc.nextInt();
         sc.nextLine();
         try{
+            // Clones the nth figure
             Figure FigToBeCloaned = figures.get(figureNumber - 1);
             figures.add(FigToBeCloaned.clone());
         }
@@ -38,6 +41,7 @@ public class Main {
         }
     }
     private static void generateFigures(FigureFactory ff, int N){
+        // creates N random figures
         for (int i = 0; i < N; i++) {
             Figure f = ff.create();
             if (f != null) figures.add(f);
@@ -48,6 +52,7 @@ public class Main {
         int figureNumber = sc.nextInt();
         sc.nextLine();
         try{
+            // deletes the nth figure
             figures.remove(figureNumber - 1);
         }
         catch(IndexOutOfBoundsException e){
@@ -55,14 +60,17 @@ public class Main {
         }
     }
     private static void handleRandomInput(Scanner sc){
+        // creates figure factory of type 'random'
         FigureFactory ff = AbstractFigureFactory.getFactory("random");
         System.out.println("How many figures do you want to read: ");
+        // reads the number of random figures
         int N = readFigureCount(sc);
         generateFigures(ff, N);
     }
     private static void handleUserCommands(Scanner sc){
         String command;
-        while(!(command = sc.nextLine()).equalsIgnoreCase("exit")){
+        // reads commands until 'exit' is entered
+        while(!(command = sc.nextLine().trim().toLowerCase()).equalsIgnoreCase("exit")){
             switch(command){
                 case "list":
                     listFigures();
@@ -79,6 +87,7 @@ public class Main {
         }
     }
     private static void handleStreamInput(Scanner sc){
+        // ensures the correct inputs are made
         while(true){
             System.out.println("Enter the input method (file or stdin): ");
             String inputMethod = sc.nextLine().trim().toLowerCase();
@@ -112,9 +121,11 @@ public class Main {
 
     }
     public static void loadFiguresFromFile(){
+        // tries to read from a pre-defined file
         try(InputStream fileStream = new FileInputStream(figuresDbFilePath)){
+            // initialises buffered reader with the file converted into inputstream
             BufferedReader reader = new BufferedReader(new InputStreamReader(fileStream));
-            String line;
+            String line; // Stores the figures in a string format
             while((line = reader.readLine())  != null){
                 if(!line.isBlank()){
                     try{
@@ -150,8 +161,10 @@ public class Main {
         }
     }
     public static void saveFiguresToFile() {
+        // tries to access the file
         try (PrintWriter writer = new PrintWriter(new FileWriter(figuresDbFilePath))) {
             for (Figure fig : figures) {
+                // writes the figures to the file
                 writer.println(fig.toString());
             }
             System.out.println("Figures saved to file.");

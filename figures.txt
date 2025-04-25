@@ -3,8 +3,9 @@ rectangle 4.50 5.40
 rectangle 255.64 197.30
 triangle 492.27 231.28 721.85
 circle 158.49
-circle 69.69
 rectangle 490.01 603.27
 triangle 598.93 468.96 562.71
 triangle 6.00 6.00 6.00
 rectangle 6.00 6.00
+circle 493.47
+triangle 492.27 231.28 721.85
